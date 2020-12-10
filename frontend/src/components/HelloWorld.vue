@@ -12,7 +12,7 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
+          Maxon davai doing
         </h1>
 
         <p class="subheading font-weight-regular">
@@ -77,6 +77,51 @@
           </a>
         </v-row>
       </v-col>
+
+
+
+          <template>
+            <div class="mb-5" cols="12">
+              <v-rating
+                v-model="rating"
+                background-color="purple lighten-3"
+                color="purple"
+                large
+              ></v-rating>
+              <v-rating
+                v-model="rating"
+                background-color="pink lighten-3"
+                color="pink"
+                large
+              ></v-rating>
+              <v-rating
+                v-model="rating"
+                background-color="orange lighten-3"
+                color="orange"
+                large
+              ></v-rating>
+              <v-rating
+                v-model="rating"
+                background-color="green lighten-3"
+                color="green"
+                large
+              ></v-rating>
+              <v-rating
+                v-model="rating"
+                background-color="red lighten-3"
+                color="red"
+                large
+              ></v-rating>
+              <v-rating
+                v-model="rating"
+                background-color="indigo lighten-3"
+                color="indigo"
+                large
+              ></v-rating>
+            </div>
+          </template>
+
+
     </v-row>
   </v-container>
 </template>
@@ -84,6 +129,7 @@
 <script>
 export default {
   name: "HelloWorld",
+
 
   data: () => ({
     ecosystem: [
