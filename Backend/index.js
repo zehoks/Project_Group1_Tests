@@ -7,6 +7,8 @@ const bodyParser = require('body-parser')
 //allow cors
 var cors = require('cors')
 
+const generationServices = require('./services/generation')
+const resultServices = require('./services/result')
 
 const app = express()
 // чтобы парсить application/json
