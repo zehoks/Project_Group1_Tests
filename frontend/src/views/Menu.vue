@@ -1,5 +1,5 @@
 <template>
-    <p>menuuu</p>
+    <p>{{ menu }}</p>
 </template>
 
 <script>
