@@ -7,9 +7,9 @@ const bodyParser = require('body-parser')
 //allow cors
 var cors = require('cors')
 
-const generationServices = require('./services/test_generation')
-//const resultServices = require('./services/test_result')
-const themeServices = require('./services/test_theme')
+const generationServices = require('./services/generation_test/question')
+//const resultServices = require('./services/result')
+const themeServices = require('./services/theme')
 
 const app = express()
 // чтобы парсить application/json
@@ -31,7 +31,8 @@ app.route('/theme').get(async (req, res) => {
 
 app.route('/test').get(async (req, res) => {
     try {
-        const arr_q_q_text = await generationServices.generateTest(1, 15)
+        const {theme, count_q} = req.body
+        const arr_q_q_text = await generationServices.generateTest(theme, count_q)
         res.send(arr_q_q_text)
     } catch (err) {
         res.status(500).send({
