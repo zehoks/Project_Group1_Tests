@@ -7,8 +7,8 @@ const bodyParser = require('body-parser')
 //allow cors
 var cors = require('cors')
 
-//const generationServices = require('./services/test_generation')
-const resultServices = require('./services/test_result')
+const generationServices = require('./services/generation_test/question')
+//const resultServices = require('./services/test_result')
 const themeServices = require('./services/test_theme')
 
 const app = express()
@@ -29,25 +29,17 @@ app.route('/theme').get(async (req, res) => {
     }
 })
 
-app.route('/result').get(async (req, res) => {
-    const {id_question, id_answer} = req.body
+
+app.route('/test').get(async (req, res) => {
     try {
-        
-        const {result} = await resultServices.get_result({id_question, id_answer})
-
-        res.send({
-            result: count_true_answer,
-            result: count_question
-        })
-
-    }catch (err) {
-        
+        const {theme, count_q} = req.body
+        const arr_q_q_text = await generationServices.generateTest(theme, count_q)
+        res.send(arr_q_q_text)
+    } catch (err) {
         res.status(500).send({
             error: err.message
         })
-        
-    } 
-    
+    }
 })
 
 app.listen(80, () => {
