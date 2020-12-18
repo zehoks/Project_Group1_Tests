@@ -17,10 +17,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-app.route('/theme').get(async (req, res) => {
+app.route('/theme').post(async (req, res) => {
     
     try {
-        const theme = await themeServices.theme_description()
+        const theme = await themeServices.theme_description(req.body.theme)
         res.send(theme)
     } catch (err) {
         res.status(500).send({
@@ -30,7 +30,7 @@ app.route('/theme').get(async (req, res) => {
 })
 
 
-app.route('/test').get(async (req, res) => {
+app.route('/test').post(async (req, res) => {
     try {
         const {theme, count_q} = req.body
         const arr_q_q_text = await generationServices.generateTest(theme, count_q)
@@ -42,7 +42,7 @@ app.route('/test').get(async (req, res) => {
     }
 })
 
-app.route('/result').get(async (req, res) => {
+app.route('/result').post(async (req, res) => {
     const {id_question, id_answer} = req.body
     try {
         
