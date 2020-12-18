@@ -1,4 +1,4 @@
-const pool = require('../../../config/db')
+const pool = require('../../config/db')
 
 /**
  * Генерирует число в заданном диапазоне
@@ -54,14 +54,16 @@ async function generateTest(theme, count_q) {
         question: rows[arr_q[i] - 1]
       })
     }
-    return arr_q_text
+
+    let arr_q_text_answer = getAnswer(arr_q_text)
+    return arr_q_text_answer
 }
 
-function getAnswer(arr_q_text) {
+async function getAnswer(arr_q_text) {
   let id_question = []
   arr_q_text.forEach(element => {
     id_question.push(element.id)
-  });
+  })
 
   let count_a = []
   //массив с количеством ответов по каждому вопросу
@@ -71,9 +73,9 @@ function getAnswer(arr_q_text) {
       SELECT count(*)
       FROM answer_question
       WHERE question_id = $1
-    `, element)
+    `, [element])
     count_a.push(rows)
-  });
+  })
   
   let id_answer = []
   for (const key in count_a) {
@@ -84,9 +86,9 @@ function getAnswer(arr_q_text) {
           SELECT id
           FROM answer_question
           WHERE question_id = $1
-        `, key)
+        `, [key])
     }
-    id_answer.push(getRandomAnswer(key, rows));
+    id_answer.push(getRandomAnswer(key, rows))
   }
   
 
@@ -97,7 +99,7 @@ function getAnswer(arr_q_text) {
       SELECT id, answer_text
       FROM answer_question
       WHERE id = $1
-      `, key)
+      `, [key])
       arr_a_text.push({
         id: rows.id,
         id_question: key,
@@ -111,12 +113,12 @@ function IsValid(key, arr) {
   flag = false
   arr.forEach(element => {
     if (key == element){
-      flag = true;
+      flag = true
     }
-  });
-  return flag;
+  })
+  return flag
 }
- 
+
 function getRandomAnswer(key, rows){
   i = getRandomIntInclusive(1, key)
     if (IsValid(i, id_answer)) {
@@ -124,10 +126,9 @@ function getRandomAnswer(key, rows){
     } else {
       i = getRandomAnswer(i, key, rows)
     }
-    return i;
+    return i
 }
 
 module.exports = {
-  generateTest,
-  getAnswer
+  generateTest
 }

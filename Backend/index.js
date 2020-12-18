@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 //allow cors
 var cors = require('cors')
 
-const generationServices = require('./services/generation_test/question')
+const generationServices = require('./services/generation_test')
 const resultServices = require('./services/result_test')
 const themeServices = require('./services/theme')
 

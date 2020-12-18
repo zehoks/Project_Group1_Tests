@@ -9,7 +9,7 @@ async function get_result(answer_for_check) {
     const {rows: true_answer } = await pool.query(`
     SELECT id, question_id, result_
     FROM answer_question
-    WHERE result_ = 1 AND question_id in (${answer_for_check[0]})
+    WHERE result_ = $1 AND question_id in ($${answer_for_check[0]})
     ` )
 
     let count_true_answer = 0
