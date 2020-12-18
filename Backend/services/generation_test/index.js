@@ -54,7 +54,7 @@ async function generateTest(theme, count_q) {
         question: rows[arr_q[i] - 1]
       })
     }
-
+//возможно здесь ошибка
     let arr_q_text_answer = getAnswer(arr_q_text)
     return arr_q_text_answer
 }
@@ -67,64 +67,79 @@ async function getAnswer(arr_q_text) {
 
   let count_a = []
   //массив с количеством ответов по каждому вопросу
-  id_question.forEach(element => {
+  for (const key in id_question) {
     const { rows } = await pool.query(
       `
       SELECT count(*)
       FROM answer_question
       WHERE question_id = $1
-    `, [element])
+    `, [key])
     count_a.push(rows)
-  })
+  }
+
   
   let id_answer = []
-  for (const key in count_a) {
+  for (const count in count_a) {
     //получаем id первого вопроса
     for (const key in id_question) {
-      const { rows } = await pool.query(
+      let { rows: id_first} = await pool.query(
         `
           SELECT id
           FROM answer_question
           WHERE question_id = $1
+          LIMIT 1
         `, [key])
+        id_answer.push({
+          id_question: key,
+          id_ans: getRandomAnswer(count, id_first, id_answer)
+        })
     }
-    id_answer.push(getRandomAnswer(key, rows))
+    
   }
   
 
   let arr_a_text = []
+  //i = 1 // здесь ошибка
   for (const key in id_question) {
-    const { rows } = await pool.query(
-      `
-      SELECT id, answer_text
-      FROM answer_question
-      WHERE id = $1
-      `, [key])
-      arr_a_text.push({
-        id: rows.id,
-        id_question: key,
-        text_answer: rows.answer_text
-      })
+    for (const [id_question, id_ans] in id_answer) {
+      if(id_question == key) {
+        const { rows } = await pool.query(
+        `
+        SELECT id, answer_text
+        FROM answer_question
+        WHERE id = $1
+        `, [id_ans])
+        arr_a_text.push({
+          id: rows.id,
+          id_question: key,
+          text_answer: rows.answer_text
+        })
+        i++
+      }
+    }
+    
   }
   return arr_a_text
 }
 
 function IsValid(key, arr) {
   flag = false
-  arr.forEach(element => {
-    if (key == element){
+  for (const item in arr) {
+    if (key == item) {
       flag = true
     }
-  })
+  }
+  
   return flag
 }
 
-function getRandomAnswer(key, rows){
-  i = getRandomIntInclusive(1, key)
+function getRandomAnswer(key, id_first, id_answer){
+  i = Math.floor(Math.random() * key + 1) + id_first - 1
     if (IsValid(i, id_answer)) {
-      id_answer.push(i + rows[0] - 1)
+      //id_answer.push(i + rows[0] - 1)
+      return i
     } else {
-      i = getRandomAnswer(i, key, rows)
+      i = Math.floor(Math.random() * key + 1) + id_first - 1
     }
     return i
 }
