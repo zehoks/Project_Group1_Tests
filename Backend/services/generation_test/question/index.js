@@ -57,6 +57,77 @@ async function generateTest(theme, count_q) {
     return arr_q_text
 }
 
+function getAnswer(arr_q_text) {
+  let id_question = []
+  arr_q_text.forEach(element => {
+    id_question.push(element.id)
+  });
+
+  let count_a = []
+  //массив с количеством ответов по каждому вопросу
+  id_question.forEach(element => {
+    const { rows } = await pool.query(
+      `
+      SELECT count(*)
+      FROM answer_question
+      WHERE question_id = $1
+    `, element)
+    count_a.push(rows)
+  });
+  
+  let id_answer = []
+  for (const key in count_a) {
+    //получаем id первого вопроса
+    for (const key in id_question) {
+      const { rows } = await pool.query(
+        `
+          SELECT id
+          FROM answer_question
+          WHERE question_id = $1
+        `, key)
+    }
+    id_answer.push(getRandomAnswer(key, rows));
+  }
+  
+
+  let arr_a_text = []
+  for (const key in id_question) {
+    const { rows } = await pool.query(
+      `
+      SELECT id, answer_text
+      FROM answer_question
+      WHERE id = $1
+      `, key)
+      arr_a_text.push({
+        id: rows.id,
+        id_question: key,
+        text_answer: rows.answer_text
+      })
+  }
+  return arr_a_text
+}
+
+function IsValid(key, arr) {
+  flag = false
+  arr.forEach(element => {
+    if (key == element){
+      flag = true;
+    }
+  });
+  return flag;
+}
+ 
+function getRandomAnswer(key, rows){
+  i = getRandomIntInclusive(1, key)
+    if (IsValid(i, id_answer)) {
+      id_answer.push(i + rows[0] - 1)
+    } else {
+      i = getRandomAnswer(i, key, rows)
+    }
+    return i;
+}
+
 module.exports = {
   generateTest,
+  getAnswer
 }

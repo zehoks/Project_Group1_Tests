@@ -43,23 +43,20 @@ app.route('/test').post(async (req, res) => {
 })
 
 app.route('/result').post(async (req, res) => {
-    const {id_question, id_answer} = req.body
+    const {body} = req.body
     try {
         
-        const {result} = await resultServices.get_result({id_question, id_answer})
+        const result = await resultServices.get_result({body})
 
-        res.send({
-            result: count_true_answer,
-            result: count_question
-        })
+        res.send({ result})
 
-    }catch (err) {
+    } catch (err) {
         
         res.status(500).send({
             error: err.message
         })
         
-    } 
+    }  
 })
 
 app.listen(80, () => {
