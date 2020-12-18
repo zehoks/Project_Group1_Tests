@@ -1,4 +1,4 @@
-const pool = require('../../config/db')
+const pool = require('../../../config/db')
 
 /**
  * Генерирует число в заданном диапазоне
@@ -18,13 +18,7 @@ function getRandomIntInclusive(min, max) {
  * @param {number} theme - номер темы
  */
 function getRandomArrQuestion(arr_q, count_q, theme, j) {
-  if (arr_q.length == count_q) return arr_q
   let num_q = getRandomIntInclusive(1 + 40 * (theme - 1), 40 * theme)
-  //if (arr_q.length == 0) arr_q.push(num_q)
-  //console.log(arr_q.length)
-  for (let i = 0; i < arr_q.length; i++) {
-    console.log(arr_q.length, arr_q[i])
-  }
   let f = true
   for (let i = 0; i < arr_q.length; i++) {
     if (arr_q[i] == num_q) f = false
@@ -34,16 +28,8 @@ function getRandomArrQuestion(arr_q, count_q, theme, j) {
     arr_q[j] = num_q
     j++
   }
-  else getRandomArrQuestion(arr_q, count_q, theme, j)
-  console.log('\n')
-  // for (let i = 0; i < arr_q.length;) {
-  //   if (num_q == arr_q[i]) getRandomArrQuestion(arr_q, count_q, theme)
-  //   else if (arr_q.length < count_q) 
-  //   {
-  //     arr_q[i] = num_q
-  //     i++
-  //   }
-  // }
+  if (arr_q.length == count_q) return arr_q
+  return getRandomArrQuestion(arr_q, count_q, theme, j)
 }
 
 /**
@@ -52,26 +38,22 @@ function getRandomArrQuestion(arr_q, count_q, theme, j) {
  * @param {number} count_q - количество вопросов
  */
 async function generateTest(theme, count_q) {
-
     let arr_q = []
     arr_q = getRandomArrQuestion(arr_q, count_q, theme, 0)
-    console.log(arr_q[0])
+
     const { rows } = await pool.query(
         `
         Select q_text
         From question
-      `,
-        [theme]
-      )
+      `)
     
     let arr_q_text = []
-    for (let i = 0; i < arr_q_text.length; i++) {
+    for (let i = 0; i < count_q; i++) {
       arr_q_text.push({
         id: arr_q[i],
-        question: rows[arr_q[i]]
+        question: rows[arr_q[i] - 1]
       })
     }
-    
     return arr_q_text
 }
 
