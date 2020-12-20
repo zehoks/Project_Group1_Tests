@@ -17,10 +17,9 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-app.route('/theme').post(async (req, res) => {
-    
+app.route('/theme/:id').get(async (req, res) => {
     try {
-        const theme = await themeServices.theme_description(req.body.theme)
+        const theme = await themeServices.theme_description(Number(req.params.id) - 1)
         res.send(theme)
     } catch (err) {
         res.status(500).send({
@@ -30,9 +29,9 @@ app.route('/theme').post(async (req, res) => {
 })
 
 
-app.route('/test').post(async (req, res) => {
+app.route('/test').get(async (req, res) => {
     try {
-        const {theme, count_q} = req.body
+        const {theme, count_q} = req.query
         const arr_q_q_text = await generationServices.generateTest(theme, count_q)
         res.send(arr_q_q_text)
     } catch (err) {
