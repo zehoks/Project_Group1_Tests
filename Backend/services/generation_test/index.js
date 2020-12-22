@@ -54,8 +54,8 @@ async function generateTest(theme, count_q) {
         question: rows[arr_q[i] - 1]
       })
     }
-//возможно здесь ошибка
-    let arr_q_text_answer = getAnswer(arr_q_text)
+
+    let arr_q_text_answer = await getAnswer(arr_q_text)
     return arr_q_text_answer
 }
 
@@ -103,18 +103,24 @@ async function getAnswer(arr_q_text) {
   for (const key in id_question) {
     for (const [id_question, id_ans] in id_answer) {
       if(id_question == key) {
-        const { rows } = await pool.query(
-        `
-        SELECT id, answer_text
-        FROM answer_question
-        WHERE id = $1
-        `, [id_ans])
-        arr_a_text.push({
-          id: rows.id,
-          id_question: key,
-          text_answer: rows.answer_text
-        })
-        i++
+        for (const [id, text_question] in arr_q_text) {
+          if (key == id) {
+            const { rows } = await pool.query(
+            `
+            SELECT id, answer_text
+            FROM answer_question
+            WHERE id = $1
+            `, [id_ans])
+            arr_a_text.push({
+              id_answer: rows.id,
+              id_question: key,
+              text_question: text_question,
+              text_answer: rows.answer_text
+            })
+            i++
+          }
+        }
+        
       }
     }
     

@@ -45,9 +45,9 @@ app.route('/result').post(async (req, res) => {
     const {body} = req.body
     try {
         
-        const result = await resultServices.get_result({body})
+        const result = await resultServices.get_result(body)
 
-        res.send({ result})
+        res.send( result)
 
     } catch (err) {
         
