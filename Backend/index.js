@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 //allow cors
 var cors = require('cors')
 
-const generationServices = require('./services/generation_test/question')
+const generationServices = require('./services/generation_test')
 const resultServices = require('./services/result_test')
 const themeServices = require('./services/theme')
 
@@ -17,10 +17,9 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-app.route('/theme').get(async (req, res) => {
-    
+app.route('/theme/:id').get(async (req, res) => {
     try {
-        const theme = await themeServices.theme_description()
+        const theme = await themeServices.theme_description(Number(req.params.id) - 1)
         res.send(theme)
     } catch (err) {
         res.status(500).send({
@@ -32,7 +31,7 @@ app.route('/theme').get(async (req, res) => {
 
 app.route('/test').get(async (req, res) => {
     try {
-        const {theme, count_q} = req.body
+        const {theme, count_q} = req.query
         const arr_q_q_text = await generationServices.generateTest(theme, count_q)
         res.send(arr_q_q_text)
     } catch (err) {
@@ -42,24 +41,21 @@ app.route('/test').get(async (req, res) => {
     }
 })
 
-app.route('/result').get(async (req, res) => {
-    const {id_question, id_answer} = req.body
+app.route('/result').post(async (req, res) => {
+    const {body} = req.body
     try {
         
-        const {result} = await resultServices.get_result({id_question, id_answer})
+        const result = await resultServices.get_result(body)
 
-        res.send({
-            result: count_true_answer,
-            result: count_question
-        })
+        res.send( result)
 
-    }catch (err) {
+    } catch (err) {
         
         res.status(500).send({
             error: err.message
         })
         
-    } 
+    }  
 })
 
 app.listen(80, () => {
