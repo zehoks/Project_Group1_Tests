@@ -60,72 +60,100 @@ async function generateTest(theme, count_q) {
 }
 
 async function getAnswer(arr_q_text) {
-  let id_question = []
-  arr_q_text.forEach(element => {
-    id_question.push(element.id)
-  })
-
-  let count_a = []
+  //let count_a = []
   //массив с количеством ответов по каждому вопросу
-  for (const key in id_question) {
-    const { rows } = await pool.query(
-      `
-      SELECT count(*)
-      FROM answer_question
-      WHERE question_id = $1
-    `, [key])
-    count_a.push(rows)
-  }
-
+  // for (const id in arr_q_text) {
+    //   const { rows } = await pool.query(
+      //     `
+      //     SELECT count(*)
+      //     FROM answer_question
+      //     WHERE question_id = $1
+      //   `, [id])
+      //   count_a.push(rows)
+      // }
+      
+      let id_answer = []
+      // for (const count in count_a) {
+        //   //получаем id первого вопроса
+        //   for (const id in arr_q_text) {
+          //     let { rows: id_first} = await pool.query(
+            //       `
+            //         SELECT id
+            //         FROM answer_question
+            //         WHERE question_id = $1
+            //         LIMIT 1
+            //       `, [id])
+            //       //console.log(id)
+            //       id_answer.push({
+              //         id_question: id,
+              //         id_ans: getRandomAnswer(count, id_first, id_answer)
+              //       })
+              //   }
+              
+              // }
+              //let answer = []
+  console.log(arr_q_text)
   
-  let id_answer = []
-  for (const count in count_a) {
-    //получаем id первого вопроса
-    for (const key in id_question) {
-      let { rows: id_first} = await pool.query(
-        `
-          SELECT id
-          FROM answer_question
-          WHERE question_id = $1
-          LIMIT 1
-        `, [key])
-        id_answer.push({
-          id_question: key,
-          id_ans: getRandomAnswer(count, id_first, id_answer)
-        })
-    }
+  for (const [id, question] in arr_q_text) {
+    let {rows: ans_id, rows: ans_t} = await pool.query(
+      `SELECT id, answer_text
+        FROM answer_question
+        WHERE question_id = $1
+      `, [id]
+    )
     
+    id_answer.push({
+      id_question: id,
+      text_question: question,
+      id_answer: {ans_id},
+      text_answer: {ans_t}
+    })
   }
   
+  console.log(id_answer)
 
-  let arr_a_text = []
-  //i = 1 // здесь ошибка
-  for (const key in id_question) {
-    for (const [id_question, id_ans] in id_answer) {
-      if(id_question == key) {
-        for (const [id, text_question] in arr_q_text) {
-          if (key == id) {
-            const { rows } = await pool.query(
-            `
-            SELECT id, answer_text
-            FROM answer_question
-            WHERE id = $1
-            `, [id_ans])
-            arr_a_text.push({
-              id_answer: rows.id,
-              id_question: key,
-              text_question: text_question,
-              text_answer: rows.answer_text
-            })
-            i++
-          }
-        }
+  //let arr_a_text = []
+  
+  // console.log(arr_q_text)
+  // for (const id in arr_q_text) {
+  //   for (const [id_question, id_ans] in id_answer) {
+  //     if(id_question == id) {
+  //       // for (const [id, question] in arr_q_text) {
+  //       //   if (key == id) {
+  //           const { rows } = await pool.query(
+  //           `
+  //           SELECT id, answer_text
+  //           FROM answer_question
+  //           WHERE id = $1
+  //           `, [id_ans])
+  //           //console.log(rows)
+  //           arr_a_text.push({
+  //             id_answer: rows.id,
+  //             id_question: id,
+  //             text_question: arr_q_text.question,
+  //             text_answer: rows.answer_text
+  //           })
+  //           i++
+  //       //   }
+  //       // }
         
-      }
-    }
+  //     }
+  //   }
     
-  }
-  return arr_a_text
+  // }
+  // for (const [id, question] in arr_q_text) {
+  //   for (const [id_question, answer] in id_answer) {
+  //     if (id == id_question){
+  //       arr_a_text.push({
+  //         id_question: id,
+  //         text_question: question,
+  //         answer: answer
+  //       })
+  //     }
+  //   }
+  // }
+  //return arr_a_text
+  return id_answer
 }
 
 function IsValid(key, arr) {
