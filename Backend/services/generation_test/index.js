@@ -107,12 +107,14 @@ async function getAnswer(arr_q_text) {
 		for (let i = 0; i < rows.length; i++) {
 			answer.push(rows[i])
 		}
+		let new_answer = []
+		new_answer.push(getRandomArrAnswer(answer))
 
 		test.push({
 			id_question: arr_q_text[i].id,
 			text_question: arr_q_text[i].question,
 
-			answer: answer,
+			answer: new_answer,
 		})
 	}
 
@@ -162,26 +164,37 @@ async function getAnswer(arr_q_text) {
 	return test
 }
 
-function IsValid(key, arr) {
-	flag = false
-	for (const item in arr) {
-		if (key == item) {
-			flag = true
+function getRandomInclusiveAnswer(arr_a, arr_id_answer) {
+	let num_a = getRandomIntInclusive(arr_a[0].id, arr_a[arr_a.length - 1].id)
+	for (let i = 0; i < arr_id_answer.length; i++) {
+		if (arr_id_answer[i] == num_a) {
+			num_a = getRandomInclusiveAnswer(arr_a, arr_id_answer)
+		}
+	}
+	return num_a
+}
+
+function getRandomArrAnswer(arr_a) {
+	let arr_id_answer = []
+	console.log(arr_a)
+
+	let arr_answer_text = []
+
+	for (let i = 0; i < arr_a.length; i++) {
+		let num_a = getRandomInclusiveAnswer(arr_a, arr_id_answer)
+		arr_id_answer.push(num_a)
+
+		for (let i = 0; i < arr_a.length; i++) {
+			if (num_a == arr_a[i].id) {
+				arr_answer_text.push({
+					id: num_a,
+					answer_text: arr_a[i].answer_text,
+				})
+			}
 		}
 	}
 
-	return flag
-}
-
-function getRandomAnswer(key, id_first, id_answer) {
-	i = Math.floor(Math.random() * key + 1) + id_first - 1
-	if (IsValid(i, id_answer)) {
-		//id_answer.push(i + rows[0] - 1)
-		return i
-	} else {
-		i = Math.floor(Math.random() * key + 1) + id_first - 1
-	}
-	return i
+	return arr_answer_text
 }
 
 module.exports = {
