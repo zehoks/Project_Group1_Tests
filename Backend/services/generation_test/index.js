@@ -60,39 +60,7 @@ async function generateTest(theme, count_q) {
 }
 
 async function getAnswer(arr_q_text) {
-	//let count_a = []
-	//массив с количеством ответов по каждому вопросу
-	// for (const id in arr_q_text) {
-	//   const { rows } = await pool.query(
-	//     `
-	//     SELECT count(*)
-	//     FROM answer_question
-	//     WHERE question_id = $1
-	//   `, [id])
-	//   count_a.push(rows)
-	// }
-
 	let test = []
-	// for (const count in count_a) {
-	//   //получаем id первого вопроса
-	//   for (const id in arr_q_text) {
-	//     let { rows: id_first} = await pool.query(
-	//       `
-	//         SELECT id
-	//         FROM answer_question
-	//         WHERE question_id = $1
-	//         LIMIT 1
-	//       `, [id])
-	//       //console.log(id)
-	//       id_answer.push({
-	//         id_question: id,
-	//         id_ans: getRandomAnswer(count, id_first, id_answer)
-	//       })
-	//   }
-
-	// }
-	//let answer = []
-	//console.log(arr_q_text)
 
 	for (let i = 0; i < arr_q_text.length; i++) {
 		const { rows } = await pool.query(
@@ -118,49 +86,6 @@ async function getAnswer(arr_q_text) {
 		})
 	}
 
-	//console.log(test)
-
-	//let arr_a_text = []
-
-	// console.log(arr_q_text)
-	// for (const id in arr_q_text) {
-	//   for (const [id_question, id_ans] in id_answer) {
-	//     if(id_question == id) {
-	//       // for (const [id, question] in arr_q_text) {
-	//       //   if (key == id) {
-	//           const { rows } = await pool.query(
-	//           `
-	//           SELECT id, answer_text
-	//           FROM answer_question
-	//           WHERE id = $1
-	//           `, [id_ans])
-	//           //console.log(rows)
-	//           arr_a_text.push({
-	//             id_answer: rows.id,
-	//             id_question: id,
-	//             text_question: arr_q_text.question,
-	//             text_answer: rows.answer_text
-	//           })
-	//           i++
-	//       //   }
-	//       // }
-
-	//     }
-	//   }
-
-	// }
-	// for (const [id, question] in arr_q_text) {
-	//   for (const [id_question, answer] in id_answer) {
-	//     if (id == id_question){
-	//       arr_a_text.push({
-	//         id_question: id,
-	//         text_question: question,
-	//         answer: answer
-	//       })
-	//     }
-	//   }
-	// }
-	//return arr_a_text
 	return test
 }
 
