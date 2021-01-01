@@ -176,7 +176,7 @@ function getRandomInclusiveAnswer(arr_a, arr_id_answer) {
 
 function getRandomArrAnswer(arr_a) {
 	let arr_id_answer = []
-	console.log(arr_a)
+	//console.log(arr_a)
 
 	let arr_answer_text = []
 
