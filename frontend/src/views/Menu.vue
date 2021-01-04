@@ -1,7 +1,7 @@
 <template>
     
     <div class="about">
-    <h1>Вернуться на начальную страницу</h1>
+    <h1>{{menu}}</h1>
         <p class="subheading font-weight-regular">
         <router-link to="/">Go to back</router-link>
         </p>
@@ -9,7 +9,7 @@
     <v-data-table
     :headers="headers" 
     :items="menu" 
-    :items-per-page="1" 
+
     class="elevation-1">
     </v-data-table>
         </p>
@@ -45,10 +45,29 @@ export default {
     methods: {
         async init() {
             
-            const res = await this.$axios.get('/theme')
-        const res = await this.$axios.get('/search?name=123&surname=123')        
-        this.menu = res.data 
-            console.log('we are in init function')
+            const res = await this.$axios.get('/theme/3')
+            .catch(function (error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+        console.log(error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+    }
+    console.log(error.config);
+        });
+       // const res = await this.$axios.get('/search?name=123&surname=123')        
+    this.menu = res.data 
+    console.log('we are in init function')
+
         }
     }
 
