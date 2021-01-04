@@ -56,6 +56,3 @@ app.route('/result').post(async (req, res) => {
 app.listen(80, () => {
 	console.log('Server started on http://localhost:80')
 })
-
-//если мы "открываем" запрос к api, то нужно прописать и его "закрытие",
-//пушо тогда сервак постоянно будет крутиться и ожидать нас

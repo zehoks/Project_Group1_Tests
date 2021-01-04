@@ -49,8 +49,6 @@ async function getMinFrequencyArrQuestion(theme, count_q) {
 		[theme]
 	)
 
-	console.log(rows)
-
 	let MaxIndexRangeQuestion = count_q - 1
 	let MaxNumberOfUseRange = rows[MaxIndexRangeQuestion].number_of_use
 	for (let i = count_q; i < rows.length; i++) {
@@ -58,12 +56,8 @@ async function getMinFrequencyArrQuestion(theme, count_q) {
 		else break
 	}
 
-	console.log(MaxIndexRangeQuestion)
-
 	let arr_q_num = []
 	arr_q_num = getRandomArrQuestion(arr_q_num, count_q, MaxIndexRangeQuestion, 0)
-
-	console.log(arr_q_num)
 
 	let arr_q = []
 	for (let i = 0; i <= MaxIndexRangeQuestion; i++) {
@@ -71,7 +65,7 @@ async function getMinFrequencyArrQuestion(theme, count_q) {
 			if (arr_q_num[j] == i) arr_q.push(rows[i].question_id)
 		}
 	}
-	console.log(arr_q)
+
 	return arr_q
 }
 
