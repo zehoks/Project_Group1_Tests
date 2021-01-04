@@ -13,22 +13,66 @@ function getRandomIntInclusive(min, max) {
 
 /**
  * Рекурсия, добавляющяя вопросы и проверяющая, что вопросы не совпадают
- * @param {number[]} arr_q - массив вопросов
+ * @param {number[]} arr_q_num - массив вопросов
  * @param {number} count_q - количество вопросов
- * @param {number} theme - номер темы
+ * @param {number} MaxIndexRangeQuestion - максимальный индекс для диапазона генерации вопросов
  */
-function getRandomArrQuestion(arr_q, count_q, theme, j) {
-	let num_q = getRandomIntInclusive(1 + 40 * (theme - 1), 40 * theme)
+function getRandomArrQuestion(arr_q_num, count_q, MaxIndexRangeQuestion, j) {
+	let num_q = getRandomIntInclusive(0, MaxIndexRangeQuestion)
 	let f = true
-	for (let i = 0; i < arr_q.length; i++) {
-		if (arr_q[i] == num_q) f = false
+	for (let i = 0; i < arr_q_num.length; i++) {
+		if (arr_q_num[i] == num_q) f = false
 	}
 	if (f) {
-		arr_q[j] = num_q
+		arr_q_num[j] = num_q
 		j++
 	}
-	if (arr_q.length == count_q) return arr_q
-	return getRandomArrQuestion(arr_q, count_q, theme, j)
+	if (arr_q_num.length == count_q) return arr_q_num
+	return getRandomArrQuestion(arr_q_num, count_q, MaxIndexRangeQuestion, j)
+}
+
+/**
+ * Функция, возвращающая массив с вопросами, содержащими
+ * меньшее количество использований из БД
+ * @param {number} theme - тема теста
+ * @param {number} count_q - количество вопросов
+ */
+
+async function getMinFrequencyArrQuestion(theme, count_q) {
+	const { rows } = await pool.query(
+		`
+        Select question_id, number_of_use
+        From theme_question
+        Where theme_id = $1
+        Order by number_of_use
+        `,
+		[theme]
+	)
+
+	console.log(rows)
+
+	let MaxIndexRangeQuestion = count_q - 1
+	let MaxNumberOfUseRange = rows[MaxIndexRangeQuestion].number_of_use
+	for (let i = count_q; i < rows.length; i++) {
+		if (rows[i].number_of_use == MaxNumberOfUseRange) MaxIndexRangeQuestion = i
+		else break
+	}
+
+	console.log(MaxIndexRangeQuestion)
+
+	let arr_q_num = []
+	arr_q_num = getRandomArrQuestion(arr_q_num, count_q, MaxIndexRangeQuestion, 0)
+
+	console.log(arr_q_num)
+
+	let arr_q = []
+	for (let i = 0; i <= MaxIndexRangeQuestion; i++) {
+		for (let j = 0; j < count_q; j++) {
+			if (arr_q_num[j] == i) arr_q.push(rows[i].question_id)
+		}
+	}
+	console.log(arr_q)
+	return arr_q
 }
 
 /**
@@ -38,7 +82,7 @@ function getRandomArrQuestion(arr_q, count_q, theme, j) {
  */
 async function generateTest(theme, count_q) {
 	let arr_q = []
-	arr_q = getRandomArrQuestion(arr_q, count_q, theme, 0)
+	arr_q = await getMinFrequencyArrQuestion(theme, count_q)
 
 	const { rows } = await pool.query(
 		`
@@ -101,7 +145,6 @@ function getRandomInclusiveAnswer(arr_a, arr_id_answer) {
 
 function getRandomArrAnswer(arr_a) {
 	let arr_id_answer = []
-	//console.log(arr_a)
 
 	let arr_answer_text = []
 
