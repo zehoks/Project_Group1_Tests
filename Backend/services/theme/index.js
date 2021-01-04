@@ -5,14 +5,14 @@ const pool = require('../../config/db')
  * @param {number} theme - номер темы
  */
 async function theme_description(theme) {
-    const { rows } = await pool.query(`
+	const { rows } = await pool.query(`
     SELECT t.name, t.description
     FROM theme t
     `)
 
-    return rows[theme]
+	return rows[theme]
 }
 
 module.exports = {
-    theme_description,
+	theme_description,
 }
