@@ -25,6 +25,16 @@
 						</p>
 					</div>
 				</v-btn>
+				<v-col cols="6">
+					<v-text-field
+						v-model="numberValue"
+						min="1"
+						max="40"
+						style="width: 60px"
+						single-line
+						type="number"
+					/>
+				</v-col>
 			</v-card-actions>
 		</v-card>
 
@@ -134,11 +144,16 @@
 
 export default {
 	data() {
+		//var x = +document.getElementById('numberValue').textContent //string to Number;
+		//const t = 3
 		return {
 			menu1: [],
 			menu2: [],
 			menu3: [],
 			menu4: [],
+			//cou: 1,
+			//t: [2],
+			x: +document.getElementById('numberValue'),
 		}
 	},
 	async created() {
@@ -146,7 +161,7 @@ export default {
 	},
 	methods: {
 		async init() {
-			const res1 = await this.$axios.get('/theme/1')
+			const res1 = await this.$axios.get(`/theme/${this.x}`)
 			this.menu1 = res1.data
 			const res2 = await this.$axios.get('/theme/2')
 			this.menu2 = res2.data
