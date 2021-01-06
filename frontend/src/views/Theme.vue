@@ -129,6 +129,9 @@
 </template>
 
 <script>
+//import axios from 'axios'
+//axios стал глобальным
+
 export default {
 	data() {
 		return {
