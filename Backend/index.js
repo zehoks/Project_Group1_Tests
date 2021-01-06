@@ -41,11 +41,13 @@ app.route('/test').get(async (req, res) => {
 	}
 })
 
-app.route('/result').get(async (req, res) => {
+app.route('/result').post(async (req, res) => {
 	try {
-		const { body } = req.body
+		const body = req.body
 		const result = await resultServices.get_result(body)
-		res.send(result)
+		res.send({
+			result: result,
+		})
 	} catch (err) {
 		res.status(500).send({
 			error: err.message,
