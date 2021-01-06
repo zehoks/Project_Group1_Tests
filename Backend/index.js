@@ -41,7 +41,7 @@ app.route('/test').get(async (req, res) => {
 	}
 })
 
-app.route('/result').post(async (req, res) => {
+app.route('/result').get(async (req, res) => {
 	try {
 		const { body } = req.body
 		const result = await resultServices.get_result(body)
