@@ -21,3 +21,10 @@ CREATE TABLE answer_question (
 	answer_text varchar(255) NOT NULL,
 	result_ integer,
 )
+
+CREATE TABLE theme_phrase (
+	id serial PRIMARY KEY,
+	theme_id integer REFERENCES theme,
+	max_value integer NOT NULL,
+	phrase varchar(500) NOT NULL
+)
