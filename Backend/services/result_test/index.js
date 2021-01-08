@@ -25,13 +25,14 @@ async function get_result(answer_for_check) {
 	} else if (res >= 70) {
 		value = 100
 	}
+
 	const { rows: theme } = await pool.query(
 		`
         SELECT theme_id 
         FROM theme_question
         WHERE question_id = $1
 	    `,
-		[answer_for_check[0].id_answer]
+		[answer_for_check[0].id_question]
 	)
 
 	const { rows } = await pool.query(
