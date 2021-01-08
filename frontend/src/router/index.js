@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import lol from '../views/lol.vue'
+import vuex from '../views/vuex.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
 		path: '/lol',
 		name: 'lol',
 		component: lol,
+	},
+	{
+		path: '/vuex',
+		name: 'vuex',
+		component: vuex,
 	},
 ]
 
