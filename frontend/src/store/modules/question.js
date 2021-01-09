@@ -1,10 +1,12 @@
 export default {
 	actions: {
-		async fetchQuestion(ctx, number = 1) {
-			const res12 = await this.$axios.get('/theme/' + number)
-			//const question = await res12.json()
+		async fetchQuestion(ctx, number = 2) {
+			const res = await fetch(
+				'https://jsonplaceholder.typicode.com/posts?_limit=' + number
+			)
+			const question = await res.json()
 			//  this.menu12 = res12.data
-			const question = res12.data
+			//	const question = res12.data
 			ctx.commit('updateQuestion', question)
 		},
 	},

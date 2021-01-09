@@ -62,8 +62,8 @@
 					v-for="question in allQuestion"
 					:key="question.id"
 				>
-					<h2>{{ question.name }}</h2>
-					<p>{{ question.description }}</p>
+					<h2>{{ question.title }}</h2>
+					<p>{{ question.body }}</p>
 				</div>
 			</div>
 		</v-col>
