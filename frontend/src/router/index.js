@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import lol from '../views/lol.vue'
 import vuex from '../views/vuex.vue'
 import NN from '../views/NN.vue'
+import Radiobutton from '../views/Radiobutton.vue'
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,11 @@ const routes = [
 		path: '/NN',
 		name: 'NN',
 		component: NN,
+	},
+	{
+		path: '/Radiobutton',
+		name: 'Radiobutton',
+		component: Radiobutton,
 	},
 ]
 
