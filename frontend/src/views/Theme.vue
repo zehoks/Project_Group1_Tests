@@ -21,10 +21,23 @@
 				<v-btn outlined rounded text>
 					<div class="about">
 						<p class="subheading font-weight-regular">
-							<router-link to="/">Сформировать тест</router-link>
+							<router-link to="/lol">Сформировать тест</router-link>
 						</p>
 					</div>
 				</v-btn>
+				<v-col cols="6">
+					<v-text-field
+						v-model="numberValue"
+						min="1"
+						max="40"
+						style="width: 60px"
+						single-line
+						type="number"
+					/>
+				</v-col>
+				<div id="app">
+					<component-a></component-a>
+				</div>
 			</v-card-actions>
 		</v-card>
 
@@ -33,7 +46,7 @@
 				<v-list-item three-line>
 					<v-list-item-content>
 						<div class="overline mb-4">
-							Tests
+							Тест
 						</div>
 						<v-list-item-title class="headline mb-1">
 							{{ menu2.name }}
@@ -54,6 +67,14 @@
 							</p>
 						</div>
 					</v-btn>
+
+					<select v-model="selected">
+						<option disabled value="">Выберите один из вариантов</option>
+						<option>А</option>
+						<option>Б</option>
+						<option>В</option>
+					</select>
+					<span>Выбрано: {{ selected }}</span>
 				</v-card-actions>
 			</v-card>
 		</v-col>
@@ -63,7 +84,7 @@
 				<v-list-item three-line>
 					<v-list-item-content>
 						<div class="overline mb-4">
-							Tests
+							Тест
 						</div>
 						<v-list-item-title class="headline mb-1">
 							{{ menu3.name }}
@@ -88,6 +109,15 @@
 							</p>
 						</div>
 					</v-btn>
+					<v-col class="mb-4" cols="3">
+						<select v-model="selected1" multiple>
+							<option>'1'</option>
+							<option>2</option>
+							<option>15</option>
+						</select>
+						<br />
+						<span>Выбрано: {{ selected1 }}</span>
+					</v-col>
 				</v-card-actions>
 			</v-card>
 		</v-col>
@@ -131,14 +161,25 @@
 <script>
 //import axios from 'axios'
 //axios стал глобальным
+//Vue.component('compotenA', {   })
 
 export default {
 	data() {
+		//var x = +document.getElementById('numberValue').textContent //string to Number;
+		//const t = 3
+		//	Vue.component('compotenA', {   })
+
 		return {
 			menu1: [],
 			menu2: [],
 			menu3: [],
 			menu4: [],
+
+			//t: [2],
+			x: +document.getElementById('numberValue'),
+			selected: '1',
+			selected1: '4',
+			cou: 10,
 		}
 	},
 	async created() {
@@ -146,11 +187,13 @@ export default {
 	},
 	methods: {
 		async init() {
-			const res1 = await this.$axios.get('/theme/1')
+			//	Vue.component('compoten-a', {y: +document.getElementById('nnumberValue'),})
+			//Vue.component('compotenA', {   })
+			const res1 = await this.$axios.get(`/theme/${this.x}`)
 			this.menu1 = res1.data
 			const res2 = await this.$axios.get('/theme/2')
 			this.menu2 = res2.data
-			const res3 = await this.$axios.get('/theme/3')
+			const res3 = await this.$axios.get(`/theme/${this.selected1}`)
 			this.menu3 = res3.data
 			const res4 = await this.$axios.get('/theme/4')
 			this.menu4 = res4.data
