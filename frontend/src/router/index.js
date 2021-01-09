@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import lol from '../views/lol.vue'
 import vuex from '../views/vuex.vue'
+import NN from '../views/NN.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
 		path: '/vuex',
 		name: 'vuex',
 		component: vuex,
+	},
+	{
+		path: '/NN',
+		name: 'NN',
+		component: NN,
 	},
 ]
 
