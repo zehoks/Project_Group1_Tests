@@ -1,32 +1,19 @@
 <template>
-	<v-col cols="12">
-		<div id="app">
-			<p>{{ this.$store.state.count }}</p>
-			<p>
-				<button @click="increment">+</button>
-			</p>
+	<div id="app">
+		<div class="question" v-for="question in allQuestion" :key="question.id">
+			<h2>{{ question.name }}</h2>
+			<p>{{ question.description }}</p>
 		</div>
-	</v-col>
+	</div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
-	// store,
-	// data() {
-	// 	return {
-	// 		message: 'Hello world',
-	// 		att: '32',
-	// 	}
-	// },
-	// async created() {
-	// 	this.init()
-	// },
-	// methods: {
-	// 	async init() {},
-	// 	increment() {
-	// 		this.$store.commit('increment')
-	// 		console.log(this.$store.state.count)
-	// 	},
-	// },
+	computed: mapGetters(['allQuestion']),
+	methods1: mapActions(['fetchQuestion']),
+	async mounted() {
+		this.fetchQuestion(3)
+	},
 }
 </script>

@@ -62,8 +62,8 @@
 					v-for="question in allQuestion"
 					:key="question.id"
 				>
-					<h2>{{ question.title }}</h2>
-					<p>{{ question.body }}</p>
+					<h2>{{ question.name }}</h2>
+					<p>{{ question.description }}</p>
 				</div>
 			</div>
 		</v-col>
@@ -81,7 +81,7 @@ export default {
 	computed: mapGetters(['allQuestion']),
 	methods1: mapActions(['fetchQuestion']),
 	async mounted() {
-		this.fetchQuestion(2)
+		this.fetchQuestion(4)
 	},
 
 	data() {

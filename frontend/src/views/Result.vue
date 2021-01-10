@@ -1,0 +1,62 @@
+<template>
+	<v-card class="mx-auto" max-width="800">
+		<v-img
+			class="white--text align-end"
+			height="300px"
+			src="https://klike.net/uploads/posts/2020-08/1597993608_2.jpg"
+		>
+		</v-img>
+
+		<v-card-subtitle class="pb-0" style="font-size:2em">
+			Результаты
+		</v-card-subtitle>
+
+		<v-card-text class="text--primary">
+			<div style="margin-top: 20px">{{ result }}</div>
+		</v-card-text>
+
+		<v-card-actions>
+			<v-btn color="orange" text>
+				<router-link to="/">Вернуться на главную</router-link>
+			</v-btn>
+		</v-card-actions>
+	</v-card>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			result: [],
+		}
+	},
+	async created() {
+		this.init()
+	},
+	methods: {
+		async init() {
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+			const res1 = await this.$axios.post('/result', [
+				this.$root.a[0],
+				this.$root.a[1],
+				this.$root.a[2],
+			])
+			this.result = res1.data
+
+			//let radioGroup0 = f
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+
+			console.log(this.$root.a[0].id_question)
+			console.log(this.$root.a[0].id_answer)
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+
+			//this.$root.a = [this.radioGroup0]
+		},
+	},
+}
+</script>

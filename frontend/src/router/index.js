@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import lol from '../views/lol.vue'
+import developments from '../views/developments.vue'
 import vuex from '../views/vuex.vue'
+import Result from '../views/Result.vue'
+import Tests from '../views/Tests.vue'
 
 Vue.use(VueRouter)
 
@@ -22,14 +24,24 @@ const routes = [
 	// 		import(/* webpackChunkName: "about" */ '../views/Tests.vue'),
 	// },
 	{
-		path: '/lol',
-		name: 'lol',
-		component: lol,
+		path: '/developments',
+		name: 'developments',
+		component: developments,
 	},
 	{
 		path: '/vuex',
 		name: 'vuex',
 		component: vuex,
+	},
+	{
+		path: '/Result',
+		name: 'Result',
+		component: Result,
+	},
+	{
+		path: '/Tests',
+		name: 'Tests',
+		component: Tests,
 	},
 ]
 
