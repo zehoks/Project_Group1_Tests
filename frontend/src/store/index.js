@@ -9,4 +9,10 @@ export default new Vuex.Store({
 	modules: {
 		question,
 	},
+	a: [
+		{
+			id_question: '0',
+			id_answer: '0',
+		},
+	],
 })

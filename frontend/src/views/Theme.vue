@@ -10,7 +10,7 @@
 						{{ menu1.name }}
 					</v-list-item-title>
 					<v-list-item-subtitle>
-						{{ menu1.description }}
+						{{ this.$root.a }}
 					</v-list-item-subtitle>
 				</v-list-item-content>
 
@@ -97,7 +97,7 @@
 				<v-list-item three-line>
 					<v-list-item-content>
 						<div class="overline mb-4">
-							Tests
+							Тест
 						</div>
 						<v-list-item-title class="headline mb-1">
 							{{ menu4.name }}
