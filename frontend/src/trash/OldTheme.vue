@@ -25,6 +25,19 @@
 						</p>
 					</div>
 				</v-btn>
+				<v-col cols="6">
+					<v-text-field
+						v-model="numberValue"
+						min="1"
+						max="40"
+						style="width: 60px"
+						single-line
+						type="number"
+					/>
+				</v-col>
+				<div id="app">
+					<component-a></component-a>
+				</div>
 			</v-card-actions>
 		</v-card>
 
@@ -54,6 +67,14 @@
 							</p>
 						</div>
 					</v-btn>
+
+					<select v-model="selected">
+						<option disabled value="">Выберите один из вариантов</option>
+						<option>А</option>
+						<option>Б</option>
+						<option>В</option>
+					</select>
+					<span>Выбрано: {{ selected }}</span>
 				</v-card-actions>
 			</v-card>
 		</v-col>
@@ -88,6 +109,15 @@
 							</p>
 						</div>
 					</v-btn>
+					<v-col class="mb-4" cols="3">
+						<select v-model="selected1" multiple>
+							<option>'1'</option>
+							<option>2</option>
+							<option>15</option>
+						</select>
+						<br />
+						<span>Выбрано: {{ selected1 }}</span>
+					</v-col>
 				</v-card-actions>
 			</v-card>
 		</v-col>
@@ -146,9 +176,9 @@ export default {
 			menu4: [],
 
 			//t: [2],
-			//	x: +document.getElementById('numberValue'),
+			x: +document.getElementById('numberValue'),
 			selected: '1',
-			selected1: '3',
+			selected1: '4',
 			cou: 10,
 		}
 	},
@@ -159,7 +189,7 @@ export default {
 		async init() {
 			//	Vue.component('compoten-a', {y: +document.getElementById('nnumberValue'),})
 			//Vue.component('compotenA', {   })
-			const res1 = await this.$axios.get('/theme/1')
+			const res1 = await this.$axios.get(`/theme/${this.x}`)
 			this.menu1 = res1.data
 			const res2 = await this.$axios.get('/theme/2')
 			this.menu2 = res2.data
