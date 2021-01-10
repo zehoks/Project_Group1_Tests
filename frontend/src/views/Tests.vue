@@ -19,7 +19,7 @@
 						value="radio-1"
 					></v-radio>
 					<v-radio
-						label="`Option2 ${this.menu1[0].text_question}`"
+						label="`Option 2 ${this.menu1[0].text_question}`"
 						value="radio-2"
 					></v-radio>
 					<v-radio
