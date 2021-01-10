@@ -10,7 +10,7 @@
 						{{ menu1.name }}
 					</v-list-item-title>
 					<v-list-item-subtitle>
-						{{ this.$root.a }}
+						{{ menu1.description }}
 					</v-list-item-subtitle>
 				</v-list-item-content>
 
@@ -168,6 +168,18 @@ export default {
 			const res4 = await this.$axios.get('/theme/4')
 			this.menu4 = res4.data
 			console.log('we are in init function')
+			this.$root.a = [
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 4, id_answer: 5 },
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 10, id_answer: 180 },
+				{ id_question: 10, id_answer: 180 },
+			]
 		},
 	},
 }

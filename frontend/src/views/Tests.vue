@@ -20,18 +20,18 @@
 					></v-radio>
 					<v-radio
 						v-bind:label="[this.menu1[0].answer[0][1].answer_text]"
-						value="radio-2"
+						v-bind:value="[this.menu1[0].answer[0][1].id]"
 					></v-radio>
 					<v-radio
 						v-bind:label="[this.menu1[0].answer[0][2].answer_text]"
-						value="radio-3"
+						v-bind:value="[this.menu1[0].answer[0][2].id]"
 					></v-radio>
 					<v-radio
 						v-bind:label="[this.menu1[0].answer[0][3].answer_text]"
-						value="radio-4"
+						v-bind:value="[this.menu1[0].answer[0][3].id]"
 					></v-radio>
 
-					<p>Выбрано:{{ (this.$root.a.id_answer = radioGroup0[0]) }}</p>
+					<p>Выбрано:{{ ($root.a[0].id_answer = radioGroup0[0]) }}</p>
 				</v-radio-group>
 				<router-link to="/Result">Result</router-link>
 			</v-container>
@@ -52,7 +52,7 @@
 				<v-radio-group v-model="radioGroup1">
 					<v-radio
 						v-bind:label="[this.menu1[1].answer[0][0].answer_text]"
-						value="radio-1"
+						v-bind:value="[this.menu1[1].answer[0][0].id]"
 					></v-radio>
 					<v-radio
 						v-bind:label="[this.menu1[1].answer[0][1].answer_text]"
@@ -66,6 +66,7 @@
 						v-bind:label="[this.menu1[1].answer[0][3].answer_text]"
 						value="radio-4"
 					></v-radio>
+					<p>Выбрано:{{ (this.$root.a[1].id_answer = radioGroup1[0]) }}</p>
 				</v-radio-group>
 			</v-container>
 		</v-card-actions>
@@ -85,7 +86,7 @@
 				<v-radio-group v-model="radioGroup2">
 					<v-radio
 						v-bind:label="[this.menu1[2].answer[0][0].answer_text]"
-						value="radio-1"
+						v-bind:value="[this.menu1[2].answer[0][0].id]"
 					></v-radio>
 					<v-radio
 						v-bind:label="[this.menu1[2].answer[0][1].answer_text]"
@@ -97,8 +98,9 @@
 					></v-radio>
 					<v-radio
 						v-bind:label="[this.menu1[2].answer[0][3].answer_text]"
-						value="radio-4"
+						v-bind:value="[this.menu1[2].answer[0][3].id]"
 					></v-radio>
+					<p>Выбрано:{{ (this.$root.a[2].id_answer = radioGroup2[0]) }}</p>
 				</v-radio-group>
 			</v-container>
 		</v-card-actions>
@@ -113,6 +115,8 @@ export default {
 			radio1: '',
 			//radioGroup0: '22323',
 			radioGroup0: '',
+			radioGroup1: '',
+			radioGroup2: '',
 		}
 	},
 	async created() {
@@ -120,15 +124,21 @@ export default {
 	},
 	methods: {
 		async init() {
-			const res1 = await this.$axios.get('/test?theme=1&count_q=10')
+			const res1 = await this.$axios.get('/test?theme=1&count_q=3')
 			this.menu1 = res1.data
 			//let radioGroup0 = f
 			console.log('radioGroup0')
 			//this.$root.a = [this.radioGroup0]
 			//this.$root.a.push({ id_question: 150, id_answer: 10 })
 
-			this.$root.a = {
+			this.$root.a[0] = {
 				id_question: this.menu1[0].id_question,
+			}
+			this.$root.a[1] = {
+				id_question: this.menu1[1].id_question,
+			}
+			this.$root.a[2] = {
+				id_question: this.menu1[2].id_question,
 			}
 		},
 	},

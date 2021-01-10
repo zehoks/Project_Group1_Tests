@@ -12,7 +12,7 @@
 		</v-card-subtitle>
 
 		<v-card-text class="text--primary">
-			<div style="margin-top: 20px">{{ menu1 }}</div>
+			<div style="margin-top: 20px">{{ result }}</div>
 		</v-card-text>
 
 		<v-card-actions>
@@ -27,7 +27,7 @@
 export default {
 	data() {
 		return {
-			menu1: [],
+			result: [],
 		}
 	},
 	async created() {
@@ -35,20 +35,26 @@ export default {
 	},
 	methods: {
 		async init() {
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
 			const res1 = await this.$axios.post('/result', [
-				{
-					id_question: this.$root.a[0].id_question,
-					id_answer: this.$root.a[0].id_answer,
-				},
-				{
-					id_question: 149,
-					id_answer: 13,
-				},
+				this.$root.a[0],
+				this.$root.a[1],
+				this.$root.a[2],
 			])
-			this.menu1 = res1.data
+			this.result = res1.data
 
 			//let radioGroup0 = f
-			console.log('radioGroup0')
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+
+			console.log(this.$root.a[0].id_question)
+			console.log(this.$root.a[0].id_answer)
+			console.log('4444444444444444444')
+			console.log('4444444444444444444')
+
 			//this.$root.a = [this.radioGroup0]
 		},
 	},
