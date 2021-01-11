@@ -35,7 +35,6 @@
 
 						<p>Выбрано:{{ ($root.a[0].id_answer = radioGroup0[0]) }}</p>
 					</v-radio-group>
-					<router-link to="/Result">Result</router-link>
 				</v-container>
 			</v-card-actions>
 		</v-alert>
@@ -123,6 +122,7 @@
 				</v-container>
 			</v-card-actions>
 		</v-alert>
+		<router-link to="/Result">Result</router-link>
 	</v-col>
 </template>
 
