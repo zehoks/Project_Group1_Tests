@@ -39,7 +39,7 @@
 				<v-btn outlined rounded text elevation="5">
 					<div class="about">
 						<p class="subheading font-weight-regular">
-							<router-link to="/Tests" style="color: orange"
+							<router-link to="/Tests1" style="color: orange"
 								>Сформировать тест</router-link
 							>
 						</p>
@@ -82,7 +82,7 @@
 					<v-btn outlined rounded text elevation="5">
 						<div class="about">
 							<p class="subheading font-weight-regular">
-								<router-link to="/" style="color: orange"
+								<router-link to="/Tests2" style="color: orange"
 									>Сформировать тест</router-link
 								>
 							</p>
@@ -120,7 +120,7 @@
 					<v-btn outlined rounded text elevation="5">
 						<div class="about">
 							<p class="subheading font-weight-regular">
-								<router-link to="/" style="color: orange"
+								<router-link to="/Tests3" style="color: orange"
 									>Сформировать тест</router-link
 								>
 							</p>
@@ -158,7 +158,7 @@
 					<v-btn outlined rounded text elevation="5">
 						<div class="about">
 							<p class="subheading font-weight-regular">
-								<router-link to="/" style="color: orange"
+								<router-link to="/Tests4" style="color: orange"
 									>Сформировать тест</router-link
 								>
 							</p>
@@ -210,7 +210,7 @@ export default {
 			const res4 = await this.$axios.get('/theme/4')
 			this.menu4 = res4.data
 			console.log('we are in init function')
-			this.$root.a = [
+			;(this.$root.a = [
 				{ id_question: 10, id_answer: 180 },
 				{ id_question: 4, id_answer: 5 },
 				{ id_question: 10, id_answer: 180 },
@@ -221,7 +221,43 @@ export default {
 				{ id_question: 10, id_answer: 180 },
 				{ id_question: 10, id_answer: 180 },
 				{ id_question: 10, id_answer: 180 },
-			]
+			]),
+				(this.$root.b = [
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 4, id_answer: 5 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+				]),
+				(this.$root.c = [
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 4, id_answer: 5 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+				]),
+				(this.$root.d = [
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 4, id_answer: 5 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+					{ id_question: 10, id_answer: 180 },
+				])
 		},
 	},
 }
