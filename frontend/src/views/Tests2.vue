@@ -416,7 +416,7 @@ export default {
 	},
 	methods: {
 		async init() {
-			const res1 = await this.$axios.get('/test?theme=1&count_q=10')
+			const res1 = await this.$axios.get('/test?theme=2&count_q=10')
 			this.menu1 = res1.data
 			//let radioGroup0 = f
 			console.log('radioGroup0')
