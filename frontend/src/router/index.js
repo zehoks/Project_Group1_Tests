@@ -4,7 +4,10 @@ import Home from '../views/Home.vue'
 import developments from '../views/developments.vue'
 import vuex from '../views/vuex.vue'
 import Result from '../views/Result.vue'
-import Tests from '../views/Tests.vue'
+import Tests1 from '../views/Tests1.vue'
+import Tests2 from '../views/Tests2.vue'
+import Tests3 from '../views/Tests3.vue'
+import Tests4 from '../views/Tests4.vue'
 
 Vue.use(VueRouter)
 
@@ -39,9 +42,24 @@ const routes = [
 		component: Result,
 	},
 	{
-		path: '/Tests',
-		name: 'Tests',
-		component: Tests,
+		path: '/Tests1',
+		name: 'Tests1',
+		component: Tests1,
+	},
+	{
+		path: '/Tests2',
+		name: 'Tests2',
+		component: Tests2,
+	},
+	{
+		path: '/Tests3',
+		name: 'Tests3',
+		component: Tests3,
+	},
+	{
+		path: '/Tests4',
+		name: 'Tests4',
+		component: Tests4,
 	},
 ]
 
