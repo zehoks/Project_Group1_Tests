@@ -13,7 +13,7 @@
 			</v-card-subtitle>
 
 			<v-card-text class="text--primary">
-				<div style="margin-top: 20px">{{ result }}</div>
+				<div style="margin-top: 20px">{{ result.result }}</div>
 			</v-card-text>
 
 			<v-card-actions>
@@ -37,9 +37,6 @@ export default {
 	},
 	methods: {
 		async init() {
-			console.log('4444444444444444444')
-			console.log('4444444444444444444')
-			console.log('4444444444444444444')
 			const res1 = await this.$axios.post('/result', [
 				this.$root.a[0],
 				this.$root.a[1],
@@ -48,14 +45,9 @@ export default {
 			this.result = res1.data
 
 			//let radioGroup0 = f
-			console.log('4444444444444444444')
-			console.log('4444444444444444444')
-			console.log('4444444444444444444')
 
 			console.log(this.$root.a[0].id_question)
 			console.log(this.$root.a[0].id_answer)
-			console.log('4444444444444444444')
-			console.log('4444444444444444444')
 
 			//this.$root.a = [this.radioGroup0]
 		},
