@@ -17,20 +17,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup0">
 						<v-radio
-							v-bind:label="[this.menu1[0].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[0].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[0].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[0].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[0].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[0].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[0].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[0].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[0].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[0].id_answer = radioGroup0[0]) }}</p>
@@ -55,20 +47,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup1">
 						<v-radio
-							v-bind:label="[this.menu1[1].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[1].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[1].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[1].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[1].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[1].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[1].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[1].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[1].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[1].id_answer = radioGroup1[0]) }}</p>
@@ -93,20 +77,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup2">
 						<v-radio
-							v-bind:label="[this.menu1[2].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[2].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[2].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[2].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[2].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[2].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[2].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[2].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[2].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[2].id_answer = radioGroup2[0]) }}</p>
@@ -131,20 +107,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup3">
 						<v-radio
-							v-bind:label="[this.menu1[3].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[3].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[3].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[3].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[3].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[3].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[3].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[3].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[3].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[3].id_answer = radioGroup3[0]) }}</p>
@@ -169,20 +137,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup4">
 						<v-radio
-							v-bind:label="[this.menu1[4].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[4].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[4].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[4].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[4].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[4].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[4].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[4].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[4].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[4].id_answer = radioGroup4[0]) }}</p>
@@ -207,20 +167,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup5">
 						<v-radio
-							v-bind:label="[this.menu1[5].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[5].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[5].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[5].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[5].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[5].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[5].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[5].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[5].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[5].id_answer = radioGroup5[0]) }}</p>
@@ -245,20 +197,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup6">
 						<v-radio
-							v-bind:label="[this.menu1[6].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[6].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[6].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[6].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[6].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[6].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[6].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[6].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[6].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[6].id_answer = radioGroup6[0]) }}</p>
@@ -283,20 +227,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup7">
 						<v-radio
-							v-bind:label="[this.menu1[7].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[7].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[7].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[7].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[7].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[7].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[7].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[7].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[7].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[7].id_answer = radioGroup7[0]) }}</p>
@@ -321,20 +257,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup8">
 						<v-radio
-							v-bind:label="[this.menu1[8].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[8].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[8].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[8].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[8].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[8].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[8].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[8].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[8].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[8].id_answer = radioGroup8[0]) }}</p>
@@ -359,20 +287,12 @@
 				<v-container class="px-0" fluid border="left" style="margin-left: 40px">
 					<v-radio-group v-model="radioGroup9">
 						<v-radio
-							v-bind:label="[this.menu1[9].answer[0][0].answer_text]"
-							v-bind:value="[this.menu1[9].answer[0][0].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[9].answer[0][1].answer_text]"
-							v-bind:value="[this.menu1[9].answer[0][1].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[9].answer[0][2].answer_text]"
-							v-bind:value="[this.menu1[9].answer[0][2].id]"
-						></v-radio>
-						<v-radio
-							v-bind:label="[this.menu1[9].answer[0][3].answer_text]"
-							v-bind:value="[this.menu1[9].answer[0][3].id]"
+							class="radio-item"
+							color="primary"
+							v-for="menu in menu1[9].answer[0]"
+							:key="menu"
+							:label="` ${menu.answer_text}`"
+							:value="[`${menu.id}`]"
 						></v-radio>
 
 						<p>Выбрано:{{ ($root.b[9].id_answer = radioGroup9[0]) }}</p>
