@@ -2,4 +2,4 @@
 True Tests of Erudition 
 Node.js+Vue.js+Vuetify+axios+PostgreSQL
 
-[ackage-jason перевести из txt в норм файл
+package-json перевести из txt в норм файл
